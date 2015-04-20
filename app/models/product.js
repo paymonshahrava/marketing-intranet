@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 
 module.exports = mongoose.model('Product', {
-	text : {type : String, default: ''}
+	Name : {type : String, default: ''},
+	Description: {type : String, default: ''},
+	ThumbnailUrl: {type : String, default: ''}
 });

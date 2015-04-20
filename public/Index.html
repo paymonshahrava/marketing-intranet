@@ -34,20 +34,20 @@
 
 		<!-- HEADER AND TODO COUNT -->
 		<div class="jumbotron text-center">
-			<h1>I'm a Product-aholic <span class="label label-info">{{ products.length }}</span></h1>
+			<h1>Marketing Products <span class="label label-info">{{ products.length }}</span></h1>
 		</div>
 
 		<!-- TODO LIST -->
 		<div id="todo-list" class="row">
 			<div class="col-sm-4 col-sm-offset-4">
-
-				
-
 				<!-- LOOP OVER THE TODOS IN $scope.todos -->
 				<div class="checkbox" ng-repeat="product in products">
-					<label>
-						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ product.text }}
-					</label>
+					<div class="form-group">
+						<img ng-src={{product.ThumbnailUrl}} />
+						<h2>{{product.Name}}</h2>
+						<p>{{product.Description}}</p>
+						<button type="submit" class="btn btn-lg btn-danger" id="deleteProduct" ng-click="deleteProduct(product._id)">Delete Product</button>
+					</div>
 				</div>
 
 				<p class="text-center" ng-show="loading">
@@ -57,25 +57,42 @@
 			</div>
 		</div>
 
-		<!-- FORM TO CREATE TODOS -->
-		<div id="todo-form" class="row">
-			<div class="col-sm-8 col-sm-offset-2 text-center">
-				<form>
-					<div class="form-group">
+		<!-- FORM TO CREATE PRODUCTS -->
+		<div id="product-form">
+			<form class="form-horizontal">
 
-						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">
+			    <div class="form-group">
+			        <label for="inputName" class="control-label col-xs-2">Name</label>
+			        <div class="col-xs-10">
+			            <input type="text" class="form-control" id="inputName" placeholder="Name" ng-model="formData.Name">
+			        </div>
+			    </div>
+
+				<div class="form-group">
+			        <label for="inputDescription" class="control-label col-xs-2">Description</label>
+			        <div class="col-xs-10">
+			            <input type="text" class="form-control" id="inputDescription" placeholder="Description" ng-model="formData.Description">
+			        </div>
+			    </div>
+
+				<div class="form-group">
+			        <label for="inputThumbnailUrl" class="control-label col-xs-2">Thumbnail Url:</label>
+			        <div class="col-xs-10">
+			            <input type="text" class="form-control" id="inputThumbnailUrl" placeholder="Name" ng-model="formData.ThumbnailUrl">
+			        </div>
+			    </div>
+
+			    <div class="form-group">
+			    	<div class="col-md-2 col-md-offset-2">
+						<button type="submit" class="btn btn-primary btn-lg" ng-click="createProduct()">Add</button>
 					</div>
+				</div>
 
-					<!-- createToDo() WILL CREATE NEW TODOS -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="createProduct()">Add</button>
-				</form>
-			</div>
+			</form>
 		</div>
 
 		<div class="text-center text-muted">
-			<p>A demo by <a href="http://scotch.io">Scotch</a>.</p>
-			<p>Read the <a href="http://scotch.io/tutorials/javascript/creating-a-single-page-todo-app-with-node-and-angular">tutorial</a>.</p>
+			<p>Brought to you by: GRP</p>
 		</div>
 
 	</div>

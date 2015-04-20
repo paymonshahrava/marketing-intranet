@@ -6,8 +6,8 @@ angular.module('marketingController', [])
 		$scope.loading = true;
 
 		// GET =====================================================================
-		// when landing on the page, get all todos and show them
-		// use the service to get all the todos
+		// when landing on the page, get all products and show them
+		// use the service to get all the products
 		Products.get()
 			.success(function(data) {
 				$scope.products = data;
@@ -20,7 +20,9 @@ angular.module('marketingController', [])
 
 			// validate the formData to make sure that something is there
 			// if form is empty, nothing will happen
-			if ($scope.formData.text != undefined) {
+			if ($scope.formData.Name != undefined &&
+				$scope.formData.Description != undefined &&
+				$scope.formData.ThumbnailUrl != undefined) {
 				$scope.loading = true;
 
 				// call the create function from our service (returns a promise object)
@@ -34,18 +36,16 @@ angular.module('marketingController', [])
 					});
 			}
 		};
-/*
 		// DELETE ==================================================================
-		// delete a todo after checking it
-		$scope.deleteTodo = function(id) {
+		// delete a product after checking it
+		$scope.deleteProduct = function(id) {
 			$scope.loading = true;
 
-			Todos.delete(id)
-				// if successful creation, call our get function to get all the new todos
+			Products.delete(id)
+				// if successful creation, call our get function to get all the new products
 				.success(function(data) {
 					$scope.loading = false;
-					$scope.todos = data; // assign our new list of todos
+					$scope.products = data; // assign our new list of products
 				});
 		};
-*/
 	}]);
