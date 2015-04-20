@@ -7,40 +7,42 @@ function getProducts(res){
 			if (err)
 				res.send(err)
 
-			res.json(products); // return all todos in JSON format
+			res.json(products); // return all products in JSON format
 		});
 };
 
 module.exports = function(app) {
 
 	// api ---------------------------------------------------------------------
-	// get all todos
+	// get all products
 	app.get('/api/products', function(req, res) {
 
-		// use mongoose to get all todos in the database
+		// use mongoose to get all products in the database
 		getProducts(res);
 	});
 
-	// create todo and send back all todos after creation
+	// create product and send back all products after creation
 	app.post('/api/products', function(req, res) {
 
-		// create a todo, information comes from AJAX request from Angular
+		// create a product, information comes from AJAX request from Angular
 		Product.create({
-			text : req.body.text,
+			Name : req.body.Name,
+			Description: req.body.Description,
+			ThumbnailUrl: req.body.ThumbnailUrl,
 			done : false
 		}, function(err, product) {
 			if (err)
 				res.send(err);
 
-			// get and return all the todos after you create another
+			// get and return all the products after you create another
 			getProducts(res);
 		});
 
 	});
 
-	// delete a todo
+	// delete a product
 	app.delete('/api/products/:product_id', function(req, res) {
-		Todo.remove({
+		Product.remove({
 			_id : req.params.product_id
 		}, function(err, product) {
 			if (err)
